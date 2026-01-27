@@ -1,4 +1,90 @@
-<div>
-    <h1>Hello World</h1>
-    <p>I'm Nils Backlund and this site is about me</p>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nils Backlund</title>
+  <meta name="description" content="Personal website of Nils Backlund">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <a href="/" class="logo">Nils Backlund</a>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="blog/">Blog</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container">
+      <h1>Hi, I'm Nils</h1>
+      <p class="tagline">Welcome to my corner of the internet.</p>
+    </div>
+  </header>
+
+  <main>
+    <section id="about" class="about">
+      <div class="container">
+        <h2>About Me</h2>
+        <p>
+          I'm a Engineering Physics student at Chalmers University of Technology,
+          currently finishing my master's in Complex Adaptive Systems. I'm drawn to
+          the intersection of AI, machine learning, and real-world applications.
+        </p>
+        <p>
+          I've had the chance to work on some fun projects along the way—from building
+          an app to compare electric vehicles, to designing PCBs for an electric race car,
+          to creating AI-powered cybersecurity tools. When I'm not coding or studying,
+          you might find me training for my next Ironman, exploring a new city or cooking with some friends.
+        </p>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <h2>Projects</h2>
+        <div class="project-grid">
+          <article class="project">
+            <h3>Project Violet</h3>
+            <p>An LLM-on-LLM honeypot framework that pits AI attackers against AI defenders, generating labeled cybersecurity datasets. Built during an AI Sweden internship.</p>
+            <a href="https://github.com/nilsbacklund/project-violet" class="project-link">View on GitHub</a>
+          </article>
+          <article class="project">
+            <h3>Bilissimo</h3>
+            <p>An iOS app built in Swift to easily compare all electric vehicles available on the Swedish market.</p>
+            <a href="#" class="project-link">View project</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="blog">
+      <div class="container">
+        <h2>Recent Posts</h2>
+        <ul class="post-list">
+          <li>
+            <a href="blog/posts/project-violet.html">Project Violet: Letting Two AIs Hack Each Other</a>
+            <span class="post-date">August 2, 2025</span>
+          </li>
+        </ul>
+        <a href="blog/" class="view-all">View all posts</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="social-links">
+        <a href="https://github.com/nilsbacklund">GitHub</a>
+        <a href="https://linkedin.com/in/nils-backlund">LinkedIn</a>
+        <a href="mailto:nils.backlund@vindiseglen.com">Email</a>
+      </div>
+      <p>Nils Backlund</p>
+    </div>
+  </footer>
+</body>
+</html>

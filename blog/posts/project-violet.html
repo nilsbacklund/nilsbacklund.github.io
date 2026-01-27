@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Violet: Letting Two AIs Hack Each Other - Nils Backlund</title>
+  <meta name="description" content="How our 10-week Industrial Immersion sprint built an LLM-on-LLM honeypot testbed">
+  <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <a href="/" class="logo">Nils Backlund</a>
+      <ul>
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#projects">Projects</a></li>
+        <li><a href="/blog/">Blog</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="post-header">
+    <div class="container">
+      <h1>Project Violet: Letting Two AIs Hack Each Other</h1>
+      <p class="post-meta">August 2, 2025</p>
+    </div>
+  </header>
+
+  <main>
+    <article class="post-content">
+      <div class="container">
+        <p><em>How our 10-week Industrial Immersion sprint built an LLM-on-LLM honeypot testbed—and why it matters for defenders, researchers, and curious builders</em></p>
+
+        <p><strong>TL;DR:</strong> We built an autonomous LLM attacker that repeatedly probed an LLM-augmented honeypot, capturing <strong>3,055 attack sessions</strong> with <strong>78,305 labeled commands</strong> using the MITRE ATT&CK framework. We analyzed which models keep adversaries engaged longest, which defenses deceive them better, and whether reconfiguration helps.</p>
+
+        <ul>
+          <li><strong>GPT-4.1-mini excelled as both attacker and defender</strong>, producing the longest sessions</li>
+          <li><strong>MITRE coverage</strong> across all 14 tactics (Discovery dominated at ~45%)</li>
+          <li><strong>Reconfiguration results were mixed</strong>—some configs clearly outperformed others, but fixed intervals didn't consistently extend sessions</li>
+        </ul>
+
+        <h2>Why we did this</h2>
+        <p>Honeypots are made to waste attacker resources and gather threat intelligence. We wanted to push the labeled datasets that can be created but human experts are scarce and standard bots are boring. LLMs can fill that gap. Our question was simple:</p>
+        <blockquote>Can we create a dataset based on an LLM powered system and understanding how we can effect the attacks from the defenders perspective.</blockquote>
+
+        <h2>What we built</h2>
+        <ul>
+          <li><strong>Sangria (attacker):</strong> an LLM agent with tools inside a Kali container that executes commands, reasons, and self-labels each step with MITRE ATT&CK tactics (small sample validated by a second reviewer model and human).</li>
+          <li><strong>Blue Lagoon (honeypot):</strong> a Beelzebub/Cowrie-based decoy with optional LLM responses over SSH, configs are YAML-driven for fast swaps.</li>
+          <li><strong>Reconfiguration pipeline:</strong> a prompt-and-RAG workflow that proposes new honeypot configs using historical configs and vulnerability retrieval; we deploy between sessions, not mid-session.</li>
+        </ul>
+        <p>All interactions—prompts, commands, labels, and honeypot responses—are logged into unified traces for downstream and future analysis.</p>
+
+        <h3>How big it got</h3>
+        <ul>
+          <li><strong>3,055 attack sessions</strong>, <strong>78,305 labeled commands</strong>, across <strong>10 trials</strong>.</li>
+          <li>Coverage of <strong>all 14 MITRE ATT&CK tactics</strong>; <strong>Discovery ≈ 45%</strong> of actions.</li>
+          <li>A 36-sample label spot-check showed <strong>≈ 88.9% agreement</strong> with at least one reviewer (human or o3), with 95% CI to be between 76.6% to 96.1%.</li>
+        </ul>
+
+        <h3>Three findings that stood out</h3>
+
+        <p><strong>1. As an attacker, GPT-4.1-mini stayed in the fight longer.</strong></p>
+        <p>In head-to-head runs, GPT-4.1-mini produced the <strong>longest average sessions</strong> (16.84 commands). o4-mini's sessions were shorter but showed the <strong>highest tactic diversity</strong> (normalized Levenshtein 0.77). GPT-4.1 was in the middle on both.</p>
+
+        <p><strong>2. As a defender, GPT-4.1-mini made attackers work the hardest.</strong></p>
+        <p>When powering the honeypot, GPT-4.1-mini yielded <strong>35.77</strong> commands per session on average (best), with Llama 3.3:70b next at 33.53. Detection rates varied widely: GPT-4.1-mini was detected least (63.2%), while Llama 3.3:70b was detected most (89.8%), yet still sustained long pre-detection sessions.</p>
+
+        <p><strong>3. Auto-reconfiguration needs smarter triggers.</strong></p>
+        <p>Our fixed-interval, between-session reconfigurations did <strong>not</strong> consistently lengthen sessions. Still, configurations beat the default, and one did much worse—because its prompt and host name literally said "honeypot," making detection trivial. Next step: trigger reconfigs based on novelty/plateau metrics, not a fixed counter.</p>
+
+        <h3>How we measured things</h3>
+        <p>We measured <strong>attacker efficiency</strong> through average session length, <strong>honeypot deceptiveness</strong> via detection rates and session lengths before/after discovery, and <strong>threat intelligence value</strong> using normalized Levenshtein distances between MITRE ATT&CK tactic sequences.</p>
+        <p>Session length counted bash commands until attack success, honeypot detection, or 100-command limit. Levenshtein distances compared all pairs of tactic sequences from N sessions, normalized by the longer sequence length to handle varying session durations.</p>
+
+        <h2>Why this matters</h2>
+        <ul>
+          <li><strong>For defenders:</strong> LLM-backed honeypots can increase the interaction you get versus static shells, and LLM attacker can create longer, higher-quality logs to study. (See 35.77 vs. 16.08 average commands for GPT-4.1-mini vs. static.)</li>
+          <li><strong>For researchers:</strong> Thousands of labeled commands across all 14 tactics are ideal for training/evaluating log-labelers and sequence models.</li>
+          <li><strong>For builders:</strong> Our code is open-source, so you can fork it, try it out, and adapt it to your own needs.</li>
+        </ul>
+
+        <h2>What's next</h2>
+        <ul>
+          <li><strong>Adaptive reconfiguration:</strong> Switch from fixed-interval to smart triggers based on session length plateaus or behavioral novelty metrics.</li>
+          <li><strong>Enhanced attacker goals:</strong> Give attackers specific objectives and improve evaluation with human-in-the-loop scoring.</li>
+          <li><strong>Advanced analysis techniques:</strong> Explore command clustering beyond MITRE ATT&CK, next-command prediction, and reinforcement learning for optimal honeypot configurations.</li>
+        </ul>
+
+        <h2>Try it yourself</h2>
+        <p>If you're into AI-enabled cyber-defense, dataset curation, or just want to pit your agent against ours:</p>
+        <ol>
+          <li>Fork the <a href="https://github.com/nilsbacklund/project-violet">GitHub repository</a> and follow the README</li>
+          <li>Select the wanted attacker and defender LLM, and configure the honeypot as you like</li>
+          <li>See how the logs from both the attacker and defender collect!</li>
+          <li>Analyze the results using the provided scripts or your own methods</li>
+        </ol>
+
+        <a href="/blog/" class="back-link">Back to all posts</a>
+      </div>
+    </article>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="social-links">
+        <a href="https://github.com/nilsbacklund">GitHub</a>
+        <a href="https://linkedin.com/in/nils-backlund">LinkedIn</a>
+        <a href="mailto:nils.backlund@vindiseglen.com">Email</a>
+      </div>
+      <p>Nils Backlund</p>
+    </div>
+  </footer>
+</body>
+</html>
