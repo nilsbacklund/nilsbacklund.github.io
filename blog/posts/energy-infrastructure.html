@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Energy Infrastructure for an Electrified Car Fleet - Nils Backlund</title>
+  <meta name="description" content="Insights from my bachelor's thesis on whether Sweden's grid can handle a fully electric vehicle fleet">
+  <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <a href="/" class="logo">Nils Backlund</a>
+      <ul>
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#projects">Projects</a></li>
+        <li><a href="/blog/">Blog</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="post-header">
+    <div class="container">
+      <h1>Energy Infrastructure for an Electrified Car Fleet</h1>
+      <p class="post-meta">June 2024</p>
+    </div>
+  </header>
+
+  <main>
+    <article class="post-content">
+      <div class="container">
+        <p>I completed my Bachelor's Thesis at Chalmers this spring (2024), titled <em>"Utformning av energiförsörjningsinfrastruktur för en elektrifierad fordonsflotta"</em> (Design of energy supply infrastructure for an electrified vehicle fleet). It was done at the Department of Electrical Engineering and I learned a lot of interesting insights about the Swedish electrical grid and whether it would be able to handle an increased amount of electric vehicles, both on long distance trips and locally in the cities.</p>
+
+        <p>Transportation today accounts for around 30% of all of Sweden's emissions, largely from passenger cars. With the EU phasing out new combustion engine cars by 2035, switching to EVs is not a question of if but when — and that means a significant new load on the grid. We analyzed driving behaviors through data on approximately 5 million cars and studies of common travel routes to create agent based models in Python (using numpy, pandas and matplotlib) to further analyze the impact on the grid.</p>
+
+        <h2>Long distance charging along E6</h2>
+
+        <p>To model the effects on long distance travel, a simulation was made where charging stations were placed every 30 km along the E6 motorway. Vehicles arrived at charging stops following a Poisson distribution based on traffic data from Trafikverket, with people starting from main population centers. It was clear that the grid alone would not be able to handle all cars during peak hours. To counteract this, the simulation was improved to include nearby battery energy storage systems that would recharge during the night and output power whenever demand exceeded what the grid could deliver.</p>
+
+        <p>The worst case we discovered (20,000 cars/day at the busiest point) would need around 65 DC fast chargers at certain locations, with 6,000 kWh of battery storage and 3,000 kW from the power grid to keep wait times minimal.</p>
+
+        <figure style="margin: 2em 0;">
+          <img src="../../assets/total_model.png" alt="Simulation of a charging station over one week showing cars charging, cars waiting, and battery storage level" style="width: 100%; border-radius: 8px;">
+          <figcaption style="margin-top: 0.5em; font-size: 0.9em; color: #666; font-style: italic;">Simulation of a charging station over one week. Blue shows cars charging, orange shows cars waiting, and green shows the battery storage level.</figcaption>
+        </figure>
+
+        <p>The graph above shows how the simulation plays out over a full week. You can see the daily cycle clearly — the battery (green) charges up during the quieter night hours and drains throughout the day as traffic peaks. The blue line shows how many cars are actively charging at any given time, hovering around 30-40 during rush hours. The orange line at the bottom represents waiting cars, and the fact that it stays near zero means the system is properly dimensioned. This interplay between grid power and battery storage is what makes the whole thing work without having to massively upgrade the power lines to each station.</p>
+
+        <h2>Everyday charging in cities</h2>
+
+        <p>Furthermore, we also analyzed the approximately 1.2 million people in Sweden who are in need of public charging for daily commutes — primarily renters without access to home chargers. This was handled in three scenarios: optimal charging habits, optimal habits with a parking margin, and realistic habits based on actual user behavior studies. The results showed that in the realistic case around 300,000 charging points would be needed across Sweden, which the grid would be able to handle without any battery support. The existing local grid has enough spare capacity for the relatively low power AC chargers used for overnight and workplace charging.</p>
+
+        <h2>Reflections</h2>
+
+        <p>I mainly worked on the simulation for the long distance trips, and seeing how the number of cars affected the battery level throughout the week was something that I really found fascinating. I was surprised to see that we are basically ready for an entirely electric car fleet — just adding some battery storage at highway charging stations could solve the remaining limitations, as long as the placement of charging stations is reasonably built out.</p>
+
+        <p>We also know that electric cars will become better in the future, with longer range, faster charging and improved efficiency. The impact this will have on the study is relatively small since the same or less energy would go into each battery. The number of chargers might even be possible to lower as cars spend less time at each station.</p>
+
+        <p>Thank you Alice Lindqvist, Johan Simonsson and Samuel Sjölén for a great thesis, and Torbjörn Thiringer for always keeping us on course and pushing us in the right direction.</p>
+
+        <a href="/blog/" class="back-link">Back to all posts</a>
+      </div>
+    </article>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="social-links">
+        <a href="https://github.com/nilsbacklund">GitHub</a>
+        <a href="https://linkedin.com/in/nils-backlund">LinkedIn</a>
+        <a href="mailto:nils.backlund@vindiseglen.com">Email</a>
+      </div>
+      <p>Nils Backlund</p>
+    </div>
+  </footer>
+</body>
+</html>
