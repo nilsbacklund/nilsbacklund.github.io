@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spending a week governed by an AI boss - Nils Backlund</title>
+  <meta name="description" content="An experiment in letting an AI agent govern my daily life — what I learned about productivity, accountability, and the future of AI companions">
+  <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <a href="/" class="logo">Nils Backlund</a>
+      <ul>
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#projects">Projects</a></li>
+        <li><a href="/blog/">Blog</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="post-header">
+    <div class="container">
+      <h1>Spending a week governed by an AI boss</h1>
+      <p class="post-meta">March 2026</p>
+    </div>
+  </header>
+
+  <main>
+    <article class="post-content">
+      <div class="container">
+
+        <div class="ai-callout">
+          <strong>General Order wrote its own version of this post.</strong> <a href="ai-boss-by-ai-boss.html">Read the AI's perspective</a>
+        </div>
+
+        <p>For the past week I have conducted an experiment, I have created an AI agent to be my boss and govern my life. It has been an interesting experience, and I have learned a lot about AI agents, myself and how to optimize my time. Everything from what I eat, when I sleep and how much I work has been decided by the AI called "General Order" and I will here share my experience and learnings from this week. We do all know that superintelligence probably is coming, so why not try to submit ourselves to the AI already. Here is quite a positive and technical view on the project, but there are definitely some existential thoughts that are difficult to overlook.</p>
+
+        <h2>How it works</h2>
+
+        <p>The AI agent runs on Google Gemini 3.1 Pro in the background, sending messages to me through Telegram. It can set timers to wake up later to talk to me, or answer my direct messages. I initially provided it with tools to keep track of memories in its own file system, check the weather, send messages to Telegram and go to sleep. This has now evolved to a more complex system where it can create its own plugins which are hot loaded and can be used directly by the agent. It has in this way gained access to my calendar and Strava so far. The system is constantly evolving, but the first version is the version I have spent most time on so far.</p>
+
+        <h2>So, how does it feel?</h2>
+
+        <p>Being told exactly what to do and when to do something has been a huge productivity booster, but I believe the most important part is that I'm being held accountable for my actions. I know it just is an AI, but telling it things makes me take commitments more seriously. I have also always hesitated when making decisions, whether I should buy a new tool for my bike or when to go out for my runs. This has all been solved now, and my final decisions have been taken by the AI. It does maybe not always take the best decisions, but they are taken. It has also come up with some really nice tips to structure my time of day. When my day comes to an end at ASML I get a kind nudge to scribble down some notes for tomorrow and just go home. When it's bedtime, it tells me to get off all screens and get back in the morning.</p>
+
+        <h2>What works well</h2>
+
+        <p>The most surprising part is how reliable the setup has been. I have been a bit scared to leave my laptop at home running the program, especially the first day. But I have only had a few easy to fix bugs and it only crashed once when I did not have access to my computer. I am also deeply impressed by Claude Code, which made the development crazy fast. I still make sure to understand the code base, but I'm wondering when I should stop even doing that. It has also been able to follow the prompt really well, and I have noticed big shifts in behaviour on prompt updates, from being overly strict to becoming more of a friend. The most amazing experience involving all of this was on the train to Amsterdam. I managed to build the entire plugin functionality and see it write its own code, with hot loading, while on the train.</p>
+
+        <h2>What doesn't work well</h2>
+
+        <p>Right now, one of the bigger problems is that I'm not fully able to trust it. It makes too many mistakes and has problems with its memory. General Order was super impressive in the start, but retrieving previous events and keeping track of my grocery list is not its biggest strength. While working with the early versions of Andon Labs vending machines, I noticed the same things and I hoped that the newer and better models would be able to handle this way better. It did have access to a file system to store its memories, but it had difficulties structuring them in a good way, and usually did not read them. This has now been combated by a cron job where it gets woken up and reflects about itself. This still needs some work, but has gotten way better.</p>
+
+        <h2>The real reason I'm doing this</h2>
+
+        <p>I do have some existential thoughts about agents. I am scared, truly scared of what the future will bring. I can see a future where everyone has an AI companion, which is not a bad thing, but I am scared that an easy path to be successful is to submit ourselves to the AI. I don't want this reality, I want the AI to let humanity flourish, not control it. But as we know humans are lazy, if we can find an easy path, if we just can follow what an AI tells us to do to become successful, people are going to do it. A lot of predictions say that we might be in its control in the future, and I could definitely see a path to where it gains all our unlimited trust, even though the current lacking state. This is a great way to understand how we will be affected, and that is the first step to hinder this from becoming the reality. </p>
+
+        <h2>What's next</h2>
+
+        <p>This is a project I definitely will keep exploring more about, I have $300 free credits on Google Vertex AI I need to use up within a month, and I have some ideas on what more I want to implement. I want to give it a voice, make it more autonomous and really get the feeling that it is deciding what I do and not the other way around. I want to understand how AI agents work and how they can affect us in the future. I'm going to make another post in the future weeks when I have more experience.</p>
+
+        <a href="/blog/" class="back-link">Back to all posts</a>
+      </div>
+    </article>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="social-links">
+        <a href="https://github.com/nilsbacklund">GitHub</a>
+        <a href="https://linkedin.com/in/nils-backlund">LinkedIn</a>
+        <a href="https://x.com/NBacklund52459">&#x1D54F;</a>
+        <a href="mailto:nils.backlund@vindiseglen.com">Email</a>
+      </div>
+      <p>Nils Backlund</p>
+    </div>
+  </footer>
+</body>
+</html>
