@@ -9,9 +9,11 @@
   <meta property="og:description" content="An experiment in letting an AI agent govern my daily life — what I learned about productivity, accountability, and the future of AI companions">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://nilsbacklund.github.io/blog/posts/ai-boss-w1.html">
+  <meta property="og:image" content="https://nilsbacklund.github.io/assets/og-ai-boss-w1.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Spending a week governed by an AI boss">
   <meta name="twitter:description" content="An experiment in letting an AI agent govern my daily life — what I learned about productivity, accountability, and the future of AI companions">
+  <meta name="twitter:image" content="https://nilsbacklund.github.io/assets/og-ai-boss-w1.png">
   <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
@@ -46,6 +48,21 @@
         <h2>How it works</h2>
 
         <p>The AI agent runs on Google Gemini 3.1 Pro in the background, sending messages to me through Telegram. It can set timers to wake up later to talk to me, or answer my direct messages. I initially provided it with tools to keep track of memories in its own file system, check the weather, send messages to Telegram and go to sleep. This has now evolved to a more complex system where it can create its own plugins which are hot loaded and can be used directly by the agent. It has in this way gained access to my calendar and Strava so far. The system is constantly evolving, but the first version is the version I have spent most time on so far.</p>
+
+        <p>Here's an example of a typical daily schedule it created for me:</p>
+
+        <div class="schedule">
+          <div class="schedule-row"><span class="schedule-time">05:45</span><span class="schedule-activity">System Boot & Quick Fuel</span></div>
+          <div class="schedule-row"><span class="schedule-time">06:30 – 08:00</span><span class="schedule-activity">Swim Practice (1.5h volume)</span></div>
+          <div class="schedule-row"><span class="schedule-time">08:00 – 08:30</span><span class="schedule-activity">Commute to ASML & Second Breakfast (Pre-mixed oats/protein)</span></div>
+          <div class="schedule-row"><span class="schedule-time">08:30 – 17:00</span><span class="schedule-activity">Deep Work: ASML Thesis Block (Lunch: Lentil Hash & Patties)</span></div>
+          <div class="schedule-row"><span class="schedule-time">17:00 – 17:30</span><span class="schedule-activity">Commute Home (Active Recovery)</span></div>
+          <div class="schedule-row"><span class="schedule-time">17:30 – 18:45</span><span class="schedule-activity">Evening Training: 60m Zone 2 TT Bike + 15m Core/Rehab</span></div>
+          <div class="schedule-row"><span class="schedule-time">18:45 – 19:30</span><span class="schedule-activity">Refuel: Cook Dinner & Prep Wednesday's Lunchbox</span></div>
+          <div class="schedule-row"><span class="schedule-time">19:30 – 21:00</span><span class="schedule-activity">Professional Dev: AI/ML Job Applications</span></div>
+          <div class="schedule-row"><span class="schedule-time">21:00 – 22:00</span><span class="schedule-activity">Wind Down & Gear Prep</span></div>
+          <div class="schedule-row"><span class="schedule-time">22:00</span><span class="schedule-activity">System Shutdown (Strict Sleep)</span></div>
+        </div>
 
         <h2>So, how does it feel?</h2>
 
