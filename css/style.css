@@ -415,6 +415,197 @@ footer p {
   color: var(--color-text);
 }
 
+.post-subtitle {
+  font-size: 1.15rem;
+  color: var(--color-text-light);
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+
+/* Notes card deck — accordion style */
+.notes-deck-wrapper {
+  /* Break out of the 800px container to center at viewport width */
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 2rem 0 2.5rem;
+}
+
+.notes-deck {
+  display: flex;
+  align-items: stretch;
+  height: 340px;
+  max-width: 1060px;
+  margin: 0 auto;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+
+.note-card {
+  flex: 1 1 0;
+  min-width: 0;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  transition: flex 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.3s ease;
+  border-right: 1px solid var(--color-border);
+  background: var(--color-card);
+}
+
+.note-card:last-child,
+.note-card:has(+ .week-divider) {
+  border-right: none;
+}
+
+.note-card:hover,
+.note-card.active {
+  flex: 0 0 260px;
+  box-shadow: 0 0 32px rgba(45, 42, 38, 0.15);
+  z-index: 10;
+}
+
+.note-card img {
+  width: 260px;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+  pointer-events: none;
+}
+
+.note-card figcaption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2.5rem 0.75rem 0.6rem;
+  background: linear-gradient(to top, rgba(45, 42, 38, 0.7) 0%, transparent 100%);
+  font-size: 0.75rem;
+  color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  text-align: left;
+  line-height: 1.3;
+  opacity: 0;
+  transition: opacity 0.3s ease 0.1s;
+  pointer-events: none;
+}
+
+.note-card:hover figcaption,
+.note-card.active figcaption {
+  opacity: 1;
+}
+
+/* Week dividers */
+.week-divider {
+  flex-shrink: 0;
+  width: 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-warm);
+  border-left: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
+}
+
+.week-divider span {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-size: 0.6rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: var(--color-text-light);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+
+/* Lightbox */
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.lightbox-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox-overlay img {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: var(--radius);
+  cursor: default;
+}
+
+.lightbox-caption {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  text-align: center;
+  max-width: 80vw;
+}
+
+.lightbox-close {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 2rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+  line-height: 1;
+  transition: color 0.2s;
+  z-index: 1001;
+}
+
+.lightbox-close:hover {
+  color: #fff;
+}
+
+.lightbox-nav {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 2.5rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 1rem;
+  transition: color 0.2s;
+  z-index: 1001;
+}
+
+.lightbox-nav:hover {
+  color: #fff;
+}
+
+.lightbox-prev {
+  left: 0.5rem;
+}
+
+.lightbox-next {
+  right: 0.5rem;
+}
+
 .back-link {
   display: inline-block;
   margin-top: 2rem;
@@ -453,6 +644,28 @@ footer p {
   .about {
     margin: 0 0.5rem 2rem;
     padding: 2rem 1.5rem;
+  }
+
+  .notes-deck {
+    height: 260px;
+  }
+
+  .notes-deck-wrapper {
+    padding: 0 0.5rem;
+  }
+
+  .note-card:hover,
+  .note-card.active {
+    flex: 0 0 200px;
+  }
+
+  .note-card img {
+    width: 200px;
+  }
+
+  .lightbox-nav {
+    font-size: 1.8rem;
+    padding: 0.5rem;
   }
 
   footer {
