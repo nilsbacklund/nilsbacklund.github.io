@@ -571,6 +571,27 @@ footer p {
   }
 }
 
+/* Inline photo pairs in post body */
+.photo-row {
+  display: flex;
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+}
+
+.photo-row img {
+  width: 50%;
+  min-width: 0;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.photo-row img:hover {
+  opacity: 0.9;
+}
+
 /* Post action buttons (thesis / presentation downloads) */
 .post-actions {
   display: flex;

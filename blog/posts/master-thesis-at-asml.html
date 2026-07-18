@@ -111,10 +111,20 @@
 
         <p>Although Eindhoven had its flaws, it had an amazing Saturday market with extremely cheap vegetables and good cheese. I am a big fan of markets, and it was so nice that wherever I went on a Saturday there was one to enjoy.</p>
 
+        <div class="photo-row">
+          <img src="../../netherlands/web/0CCE9D7A-D1C1-4DDE-9E25-4399C4C7BEDF_1_102_o.jpeg" alt="Canal full of boats on a sunny day" loading="lazy" decoding="async">
+          <img src="../../netherlands/web/32DF14DC-C430-43D6-A8AD-FDAD9D65C14B_1_105_c.jpeg" alt="Market stall with crates of cheap vegetables" loading="lazy" decoding="async">
+        </div>
+
         <h3>Cycling everywhere</h3>
         <p>Cycling is huge in the Netherlands, both for transport and as training. Everyone has a bike and uses it a lot. The absolutely massive bicycle garages are always quite full, and the priority given to bikes changes how easy it is to get around. I had to stop for three traffic lights on my way to work, and that felt like a lot compared to the single one when cycling into the center. Now in Sweden, I cannot even count the number of stops I have to make on a single ride.</p>
 
         <p>The roads are also built for cyclists — there is ALWAYS a lane for bikes, no matter if you are on a side street in the city or out on a country road. This brings me to road cycling, which is also very popular. Most people pick up cycling once they start studying, which creates a lot of friendly and welcoming cycling clubs. I joined one myself (Squadra Veloce) and bought a cheap road bike to be able to take part in their practices. The group rides were great — there could be up to 60 people split into 3 groups. This was combined with some general triathlon training.</p>
+
+        <div class="photo-row">
+          <img src="../../netherlands/web/74FCAB3B-2F4A-4AA4-B00B-55378F606888_1_105_c.jpeg" alt="View from the bike on a wide Dutch cycling path" loading="lazy" decoding="async">
+          <img src="../../netherlands/web/5295B1D1-0950-44F1-BB30-07687B251C15_1_105_c.jpeg" alt="Coffee stop during a group ride, helmets on the table" loading="lazy" decoding="async">
+        </div>
 
         <h2>Working at ASML</h2>
         <p>ASML is a cool company. Their product needs to be incredibly precise, measuring distance in atoms and temperature in millikelvin, and their new EUV machine is on another planet. I learned a lot, both in technical skills, but more importantly in how big companies work. I had a supervisor who pushed me to learn more about the company, which I am grateful for, and in general people are really smart — almost everyone I worked with had a PhD.</p>
@@ -260,6 +270,12 @@
 
       track.addEventListener('dragstart', function (e) {
         e.preventDefault();
+      });
+
+      document.querySelectorAll('.photo-row img').forEach(function (img) {
+        img.addEventListener('click', function () {
+          open(sources.indexOf(img.getAttribute('src')));
+        });
       });
 
       track.addEventListener('click', function (e) {
